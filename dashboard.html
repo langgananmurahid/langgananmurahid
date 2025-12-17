@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigitalMurahId Dashboard</title>
+<style>
+/* =====================
+   RESET & GLOBAL
+===================== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  color:white;
+  background:
+    radial-gradient(circle at top right, rgba(10,25,47,0.6), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(138,43,226,0.45), transparent 45%),
+    linear-gradient(135deg, #000000, #2a0a52, #0a1931);
+  min-height:100vh;
+  padding:20px;
+}
+
+/* =====================
+   CONTAINER
+===================== */
+.container{ max-width:480px; margin:0 auto; }
+
+/* =====================
+   HEADER
+===================== */
+.header{
+  text-align:center; margin-bottom:20px;
+}
+.logo-wrapper{ position:relative; width:90px; aspect-ratio:1/1; margin:0 auto 10px;}
+.logo{
+  width:100%; height:100%; object-fit:contain; border-radius:50%;
+  box-shadow:0 0 12px rgba(90,160,255,0.9),0 0 26px rgba(20,40,80,0.9);
+  animation:pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}}
+.header-title{ font-size:28px; font-weight:800; margin-bottom:4px; text-shadow:0 0 14px rgba(138,43,226,0.9);}
+.header-desc{ font-size:14px; opacity:0.9;}
+
+/* =====================
+   BUTTON NAV
+===================== */
+.btn-group{ display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.btn{
+  position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  padding:14px; border-radius:14px; font-weight:bold; font-size:15px; text-decoration:none;
+  color:white; background:linear-gradient(135deg,#3a0ca3,#0a1931);
+  transition:all 0.35s ease; cursor:pointer;
+}
+.btn:hover{ transform:translateY(-2px) scale(1.02); box-shadow:0 0 30px rgba(138,43,226,0.9);}
+.btn::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(120deg,transparent, rgba(138,43,226,0.7), transparent);
+  transform:translateX(-100%); transition:0.6s;
+}
+.btn:hover::before{ transform:translateX(100%); }
+.icon{ font-size:20px; margin-right:8px; }
+
+/* =====================
+   ACCORDION
+===================== */
+.accordion-box{ background: rgba(20,10,40,0.88); border-radius:12px; margin-bottom:18px; overflow:hidden; box-shadow:0 0 12px rgba(138,43,226,0.35),0 0 25px rgba(10,25,47,0.45);}
+.accordion-header{
+  width:100%; text-align:left; padding:14px 18px;
+  font-size:16px; font-weight:bold; cursor:pointer; background:linear-gradient(135deg,#3a0ca3,#0a1931);
+  color:white; display:flex; justify-content:space-between; align-items:center; border:none; outline:none; transition:all 0.35s ease;
+}
+.accordion-header:hover{ background:linear-gradient(135deg,#7a6bf0,#1a0f42);}
+.accordion-header .arrow{ transition: transform 0.35s ease;}
+.accordion-box.active .arrow{ transform:rotate(180deg);}
+.accordion-content{ max-height:0; overflow:hidden; opacity:0; transition:max-height 0.45s ease, opacity 0.35s ease; padding:0 18px;}
+.accordion-box.active .accordion-content{ max-height:5000px; opacity:1; padding:12px 18px 18px;}
+
+/* CATEGORY BOX */
+.category-box{ margin-bottom:14px;}
+.category-title{ font-weight:bold; font-size:15px; margin-bottom:6px; text-shadow:0 0 8px rgba(138,43,226,0.8);}
+.price-list{ list-style:none; }
+.price-list li{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.2); font-size:14px;}
+.note-box p{ font-size:13px; opacity:0.8; background: rgba(255,255,255,0.05); padding:8px; border-radius:8px; text-align:center; box-shadow:0 0 12px rgba(138,43,226,0.25), inset 0 0 8px rgba(10,25,47,0.2);}
+
+/* =====================
+   PAYMENT SECTION
+===================== */
+.payment-box{ background: rgba(25,15,50,0.88); backdrop-filter: blur(8px); border-radius:16px; padding:20px; margin-bottom:20px; box-shadow:0 0 18px rgba(138,43,226,0.35),0 0 30px rgba(10,25,47,0.35);}
+.payment-title{ display:flex; align-items:center; gap:10px; font-size:20px; margin-bottom:10px;}
+.payment-title img{ width:28px; height:28px; }
+.info{ font-size:14px; margin-bottom:6px; opacity:0.9;}
+.number-box{ display:flex; justify-content:space-between; align-items:center; background:#0a1931; padding:10px; border-radius:10px;}
+.copy-btn{ background: linear-gradient(135deg,#3a0ca3,#0a1931); border:none; color:white; padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.3s;}
+.copy-btn:hover{ box-shadow:0 0 14px rgba(138,43,226,0.9); transform:scale(1.05);}
+.qris{ width:100%; max-width:260px; display:block; margin:12px auto 0; border-radius:12px;}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (min-width:768px){ .container{ max-width:600px; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-wrapper">
+      <img src="https://i.ibb.co.com/why2xx9s/Blue-Modern-P-letter-logo-design-template-20251114-042832-0000.png" class="logo" alt="Logo">
+    </div>
+    <div class="header-title">DigitalMurahId</div>
+    <div class="header-desc">Layanan premium digital bergaransi & anti limit, siap pakai di 1 device.</div>
+  </div>
+
+  <!-- NAVIGATION BUTTONS -->
+  <div class="btn-group">
+    <button class="btn" onclick="alert('Hubungi Admin via WhatsApp');"><span class="icon">💬</span>Hubungi Admin</button>
+    <button class="btn" onclick="scrollToSection('sosmed');"><span class="icon">📱</span>Daftar Harga Sosial Media</button>
+    <button class="btn" onclick="scrollToSection('apppremium');"><span class="icon">🎬</span>Daftar Harga Aplikasi Premium</button>
+    <button class="btn" onclick="scrollToSection('payment');"><span class="icon">💳</span>Pembayaran</button>
+  </div>
+
+  <!-- =====================
+       SOSIAL MEDIA SECTION (accordion)
+  ====================== -->
+  <div id="sosmed">
+    <!-- Instagram, TikTok, Telegram, Youtube, Shopee -->
+    <!-- Gunakan accordion-box seperti contoh sebelumnya -->
+    <!-- Kamu bisa copy kode sosial media yang sudah rapi dari file sosmed.html sebelumnya -->
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Harga Sosial Media | DigitalMurahId</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+  <h1 class="page-title">DAFTAR HARGA SOSIAL MEDIA</h1>
+  <p class="page-subtitle">
+    DigitalMurahId • Garansi • Non Drop • Auto Refill • Fast Process
+  </p>
+
+  <!-- ================= INSTAGRAM ================= -->
+ <div class="accordion-box">
+  <button class="accordion-header">
+    <span>📸 Instagram</span>
+    <span class="arrow">⌄</span>
+  </button>
+
+  <div class="accordion-content">
+
+    <!-- Followers LN -->
+    <div class="category-box">
+      <h3 class="category-title">Followers Luar Negeri</h3>
+      <ul class="price-list">
+        <li><span>100 Followers</span><span>Rp 5.000</span></li>
+        <li><span>200 Followers</span><span>Rp 10.000</span></li>
+        <li><span>300 Followers</span><span>Rp 15.000</span></li>
+        <li><span>500 Followers</span><span>Rp 25.000</span></li>
+        <li><span>1.000 Followers</span><span>Rp 45.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Followers ID -->
+    <div class="category-box">
+      <h3 class="category-title">Followers Indonesia</h3>
+      <ul class="price-list">
+        <li><span>100 Followers</span><span>Rp 10.000</span></li>
+        <li><span>200 Followers</span><span>Rp 18.000</span></li>
+        <li><span>300 Followers</span><span>Rp 27.000</span></li>
+        <li><span>500 Followers</span><span>Rp 45.000</span></li>
+        <li><span>1.000 Followers</span><span>Rp 90.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Likes LN -->
+    <div class="category-box">
+      <h3 class="category-title">Likes Luar Negeri</h3>
+      <ul class="price-list">
+        <li><span>100 Likes</span><span>Rp 2.000</span></li>
+        <li><span>200 Likes</span><span>Rp 4.000</span></li>
+        <li><span>500 Likes</span><span>Rp 7.000</span></li>
+        <li><span>1.000 Likes</span><span>Rp 12.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Likes ID -->
+    <div class="category-box">
+      <h3 class="category-title">Likes Indonesia</h3>
+      <ul class="price-list">
+        <li><span>100 Likes</span><span>Rp 6.000</span></li>
+        <li><span>200 Likes</span><span>Rp 13.000</span></li>
+        <li><span>300 Likes</span><span>Rp 18.000</span></li>
+        <li><span>500 Likes</span><span>Rp 28.000</span></li>
+        <li><span>1.000 Likes</span><span>Rp 52.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Reels Views -->
+    <div class="category-box">
+      <h3 class="category-title">Views Reels</h3>
+      <ul class="price-list">
+        <li><span>1.000 Views</span><span>Rp 3.000</span></li>
+        <li><span>2.000 Views</span><span>Rp 5.000</span></li>
+        <li><span>5.000 Views</span><span>Rp 8.000</span></li>
+        <li><span>10.000 Views</span><span>Rp 12.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Story -->
+    <div class="category-box">
+      <h3 class="category-title">Views Story / Snap</h3>
+      <ul class="price-list">
+        <li><span>100 Views</span><span>Rp 3.000</span></li>
+        <li><span>200 Views</span><span>Rp 5.000</span></li>
+        <li><span>500 Views</span><span>Rp 10.000</span></li>
+        <li><span>1.000 Views</span><span>Rp 15.000</span></li>
+        <li><span>2.000 Views</span><span>Rp 25.000</span></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =====================
+     TIKTOK (FIX TOTAL)
+===================== -->
+<div class="accordion-box">
+  <button class="accordion-header">
+    <span>🎵 TikTok</span>
+    <span class="arrow">⌄</span>
+  </button>
+
+  <div class="accordion-content">
+
+    <!-- Followers LN -->
+    <div class="category-box">
+      <h3 class="category-title">Followers Luar Negeri</h3>
+      <ul class="price-list">
+        <li><span>100 Followers</span><span>Rp 5.000</span></li>
+        <li><span>200 Followers</span><span>Rp 10.000</span></li>
+        <li><span>300 Followers</span><span>Rp 15.000</span></li>
+        <li><span>500 Followers</span><span>Rp 25.000</span></li>
+        <li><span>1.000 Followers</span><span>Rp 45.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Followers ID -->
+    <div class="category-box">
+      <h3 class="category-title">Followers Indonesia</h3>
+      <ul class="price-list">
+        <li><span>100 Followers</span><span>Rp 15.000</span></li>
+        <li><span>200 Followers</span><span>Rp 30.000</span></li>
+        <li><span>300 Followers</span><span>Rp 45.000</span></li>
+        <li><span>500 Followers</span><span>Rp 75.000</span></li>
+        <li><span>1.000 Followers</span><span>Rp 150.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Likes -->
+    <div class="category-box">
+      <h3 class="category-title">Likes</h3>
+      <ul class="price-list">
+        <li><span>100 Likes Luar Negeri</span><span>Rp 2.000</span></li>
+        <li><span>100 Likes Indonesia</span><span>Rp 5.000</span></li>
+        <li><span>500 Likes Indonesia</span><span>Rp 25.000</span></li>
+        <li><span>1.000 Likes Indonesia</span><span>Rp 50.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Views -->
+    <div class="category-box">
+      <h3 class="category-title">Views / Penonton</h3>
+      <ul class="price-list">
+        <li><span>1.000 Views</span><span>Rp 2.000</span></li>
+        <li><span>5.000 Views</span><span>Rp 5.000</span></li>
+        <li><span>10.000 Views</span><span>Rp 8.000</span></li>
+        <li><span>25.000 Views</span><span>Rp 15.000</span></li>
+        <li><span>50.000 Views</span><span>Rp 25.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Save & Share -->
+    <div class="category-box">
+      <h3 class="category-title">Save & Share (SnS)</h3>
+      <ul class="price-list">
+        <li><span>100 SnS</span><span>Rp 2.000</span></li>
+        <li><span>200 SnS</span><span>Rp 3.000</span></li>
+        <li><span>500 SnS</span><span>Rp 5.000</span></li>
+        <li><span>1.000 SnS</span><span>Rp 8.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Paket FYP -->
+    <div class="category-box special">
+      <h3 class="category-title">🔥 Paket FYP TikTok (Best Seller)</h3>
+
+      <div class="fyp-card">
+        <h4>Mini</h4>
+        <ul class="fyp-list">
+          <li>✔ 200 Likes</li>
+          <li>✔ 1.000 Views</li>
+        </ul>
+        <div class="price">Rp 5.000</div>
+      </div>
+
+      <div class="fyp-card">
+        <h4>Medium</h4>
+        <ul class="fyp-list">
+          <li>✔ 400 Likes</li>
+          <li>✔ 3.000 Views</li>
+          <li>✔ 100 Share & Save</li>
+        </ul>
+        <div class="price">Rp 8.000</div>
+      </div>
+
+      <div class="fyp-card">
+        <h4>Large</h4>
+        <ul class="fyp-list">
+          <li>✔ 800 Likes</li>
+          <li>✔ 10.000 Views</li>
+          <li>✔ 250 Share & Save</li>
+        </ul>
+        <div class="price">Rp 15.000</div>
+      </div>
+
+      <div class="fyp-card">
+        <h4>Extra</h4>
+        <ul class="fyp-list">
+          <li>✔ 1.500 Likes</li>
+          <li>✔ 25.000 Views</li>
+          <li>✔ 400 Share & Save</li>
+        </ul>
+        <div class="price">Rp 25.000</div>
+      </div>
+
+      <div class="fyp-card combo">
+        <h4>🔥 Extra Combo</h4>
+        <ul class="fyp-list">
+          <li>✔ 3.200 Likes</li>
+          <li>✔ 115.000 Views</li>
+          <li>✔ 2.400 Share & Save</li>
+        </ul>
+        <div class="price">Rp 50.000</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =====================
+     TELEGRAM
+===================== -->
+<div class="accordion-box">
+  <button class="accordion-header">
+    <span>📨 Telegram</span>
+    <span class="arrow">⌄</span>
+  </button>
+
+  <div class="accordion-content">
+
+    <!-- Member -->
+    <div class="category-box">
+      <h3 class="category-title">Member Group / Channel</h3>
+      <ul class="price-list">
+        <li><span>100 Member</span><span>Rp 5.000</span></li>
+        <li><span>200 Member</span><span>Rp 10.000</span></li>
+        <li><span>300 Member</span><span>Rp 14.000</span></li>
+        <li><span>500 Member</span><span>Rp 23.000</span></li>
+        <li><span>1.000 Member</span><span>Rp 43.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Views -->
+    <div class="category-box">
+      <h3 class="category-title">View Post Channel</h3>
+      <ul class="price-list">
+        <li><span>1.000 Views</span><span>Rp 3.000</span></li>
+        <li><span>2.000 Views</span><span>Rp 5.000</span></li>
+        <li><span>5.000 Views</span><span>Rp 10.000</span></li>
+        <li><span>10.000 Views</span><span>Rp 18.000</span></li>
+        <li><span>25.000 Views</span><span>Rp 35.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Reaction -->
+    <div class="category-box">
+      <h3 class="category-title">Reaction Channel</h3>
+      <ul class="price-list">
+        <li><span>100 Reaction</span><span>Rp 3.000</span></li>
+        <li><span>300 Reaction</span><span>Rp 7.000</span></li>
+        <li><span>500 Reaction</span><span>Rp 12.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Telegram Premium -->
+    <div class="category-box premium-telegram">
+      <h3 class="category-title">👑 Telegram Premium</h3>
+      <p class="premium-desc">
+        Akun resmi Telegram Premium<br>
+        Aktif cepat • Legal • Full fitur
+      </p>
+      <div class="premium-price">Rp 52.000 / Bulan</div>
+      <div class="premium-badge">BEST DEAL</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =====================
+     YOUTUBE
+===================== -->
+<div class="accordion-box">
+  <button class="accordion-header">
+    <span>▶️ YouTube</span>
+    <span class="arrow">⌄</span>
+  </button>
+
+  <div class="accordion-content">
+
+    <!-- Subscriber -->
+    <div class="category-box">
+      <h3 class="category-title">Subscriber</h3>
+      <ul class="price-list">
+        <li><span>100 Subscriber</span><span>Rp 12.000</span></li>
+        <li><span>200 Subscriber</span><span>Rp 24.000</span></li>
+        <li><span>500 Subscriber</span><span>Rp 60.000</span></li>
+        <li><span>1.000 Subscriber</span><span>Rp 100.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Views -->
+    <div class="category-box">
+      <h3 class="category-title">Views Video</h3>
+      <ul class="price-list">
+        <li><span>1.000 Views</span><span>Rp 10.000</span></li>
+        <li><span>2.000 Views</span><span>Rp 20.000</span></li>
+        <li><span>5.000 Views</span><span>Rp 35.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Likes -->
+    <div class="category-box">
+      <h3 class="category-title">Likes Video</h3>
+      <ul class="price-list">
+        <li><span>100 Likes</span><span>Rp 6.500</span></li>
+        <li><span>200 Likes</span><span>Rp 13.000</span></li>
+        <li><span>300 Likes</span><span>Rp 18.000</span></li>
+      </ul>
+    </div>
+
+    <!-- Note -->
+    <div class="category-box note-box">
+      <p>
+        ✔ Semua layanan bergaransi<br>
+        ✔ Non-drop & Auto Refill<br>
+        ✔ Estimasi proses 1×24 jam
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- =====================
+     SHOPEE
+===================== -->
+<div class="accordion-box">
+  <button class="accordion-header">
+    <span>🛒 Shopee</span>
+    <span class="arrow">⌄</span>
+  </button>
+
+  <div class="accordion-content">
+
+    <div class="category-box">
+      <h3 class="category-title">Followers Indonesia</h3>
+      <ul class="price-list">
+        <li><span>100 Followers</span><span>Rp 4.000</span></li>
+        <li><span>200 Followers</span><span>Rp 8.000</span></li>
+        <li><span>300 Followers</span><span>Rp 12.000</span></li>
+        <li><span>500 Followers</span><span>Rp 20.000</span></li>
+        <li><span>1.000 Followers</span><span>Rp 30.000</span></li>
+      </ul>
+    </div>
+
+    <div class="category-box note-box">
+      <p>
+        ✔ Semua layanan bergaransi<br>
+        ✔ Non-drop & Auto Refill<br>
+        ✔ Estimasi proses 1×24 jam
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+  <div class="btn-group">
+    <a href="https://wa.me/13438944164" class="btn">💬 Hubungi Admin</a>
+    <a href="payment.html" class="btn">💳 Pembayaran</a>
+    <a href="index.html" class="btn">🏠 Kembali ke Home</a>
+  </div>
+
+  <p class="notice">
+    Semua layanan bergaransi, non-drop & auto refill.<br>
+    Estimasi proses 1x24 jam.
+  </p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+  </div>
+
+  <!-- =====================
+       APLIKASI PREMIUM SECTION
+  ====================== -->
+  <div id="apppremium">
+    <!-- Gunakan accordion-box lengkap aplikasi premium -->
+    <!-- Copy semua kode aplikasi premium dari file aplikasi-premium.html sebelumnya -->
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Premium - DigitalMurahId</title>
+<style>
+/* =====================
+   RESET & GLOBAL
+===================== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(10,25,47,0.6), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(138,43,226,0.45), transparent 45%),
+    linear-gradient(135deg, #000000, #2a0a52, #0a1931);
+  color:white;
+  min-height:100vh;
+  padding:20px;
+}
+
+/* =====================
+   CONTAINER
+===================== */
+.container{ max-width:480px; margin:0 auto; }
+
+/* =====================
+   TITLE
+===================== */
+.title{ text-align:center; font-size:28px; font-weight:800; margin-bottom:10px; text-shadow:0 0 14px rgba(138,43,226,0.9);}
+.description{ font-size:14px; opacity:0.9; text-align:center; margin-bottom:20px;}
+
+/* =====================
+   ACCORDION
+===================== */
+.accordion-box{
+  background: rgba(20,10,40,0.88);
+  border-radius:12px;
+  margin-bottom:18px;
+  overflow:hidden;
+  box-shadow:0 0 12px rgba(138,43,226,0.35),0 0 25px rgba(10,25,47,0.45);
+}
+.accordion-header{
+  width:100%; text-align:left; padding:14px 18px;
+  font-size:16px; font-weight:bold; cursor:pointer;
+  background:linear-gradient(135deg,#3a0ca3,#0a1931);
+  color:white; display:flex; justify-content:space-between; align-items:center;
+  border:none; outline:none; transition:all 0.35s ease;
+}
+.accordion-header:hover{ background:linear-gradient(135deg,#7a6bf0,#1a0f42);}
+.accordion-header .arrow{ transition: transform 0.35s ease;}
+.accordion-box.active .arrow{ transform:rotate(180deg);}
+
+/* =====================
+   ACCORDION CONTENT
+===================== */
+.accordion-content{
+  max-height:0; overflow:hidden; opacity:0;
+  transition:max-height 0.45s ease, opacity 0.35s ease;
+  padding:0 18px;
+}
+.accordion-box.active .accordion-content{
+  max-height:3000px; opacity:1; padding:12px 18px 18px;
+}
+
+/* CATEGORY BOX */
+.category-box{ margin-bottom:14px;}
+.category-title{ font-weight:bold; font-size:15px; margin-bottom:6px; text-shadow:0 0 8px rgba(138,43,226,0.8);}
+
+/* PRICE LIST */
+.price-list{ list-style:none; }
+.price-list li{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.2); font-size:14px;}
+
+/* NOTE BOX */
+.note-box p{
+  font-size:13px; opacity:0.8;
+  background: rgba(255,255,255,0.05);
+  padding:8px; border-radius:8px;
+  text-align:center;
+  box-shadow:0 0 12px rgba(138,43,226,0.25), inset 0 0 8px rgba(10,25,47,0.2);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (min-width:768px){ .container{ max-width:600px; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="title">Aplikasi Premium</div>
+  <div class="description">Layanan premium digital bergaransi & anti limit, siap pakai di 1 device.</div>
+
+  <!-- ===================== ACCORDION ITEMS ====================== -->
+  <div class="accordion-box">
+    <button class="accordion-header">Netflix <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 6.000</span></li>
+        <li><span>3 Hari</span><span>Rp 10.000</span></li>
+        <li><span>1 Minggu</span><span>Rp 15.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 27.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full, tidak boleh pindah device, anti limit screen & bebas nonton</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Disney+ <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 5.000</span></li>
+        <li><span>7 Hari</span><span>Rp 15.000</span></li>
+        <li><span>30 Hari</span><span>Rp 28.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full, anti limit screen & bebas nonton</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Vidio Platinum <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 15.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 25.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full, anti limit screen & bebas nonton</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Prime Video Amazon <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 4.000</span></li>
+        <li><span>7 Hari</span><span>Rp 9.000</span></li>
+        <li><span>30 Hari</span><span>Rp 15.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full, anti limit screen & bebas nonton</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">HBO Max <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 15.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">iQiyi Premium <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 14.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Viu <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 5.000</span></li>
+        <li><span>6 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 20.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">B-Station <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Lok Lok <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 20.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">WeTv <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 10.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 15.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Dramabox <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Youku <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 6.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 20.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Vision+ <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 18.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Spotify <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <h4 class="category-title">Family Plan (Bergaransi)</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 15.000</span></li>
+        <li><span>2 Bulan</span><span>Rp 28.000</span></li>
+      </ul>
+      <h4 class="category-title">Individual Plan (Bergaransi)</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 23.000</span></li>
+        <li><span>2 Bulan</span><span>Rp 33.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 45.000</span></li>
+      </ul>
+      <h4 class="category-title">Student Plan (Tidak Bergaransi)</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 25.000</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">YouTube Premium <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <h4 class="category-title">No Garansi</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 5.000</span></li>
+      </ul>
+      <h4 class="category-title">Full Garansi</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 7.000</span></li>
+        <li><span>2 Bulan</span><span>Rp 14.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 20.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 55.000</span></li>
+      </ul>
+      <div class="note-box"><p>Include YouTube biasa & YouTube Music</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Apple Music <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="note-box"><p>Garansi full</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Canva Pro <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 5.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>Lifetime</span><span>Rp 25.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Alight Motion <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <h4 class="category-title">Private Android</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 10.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 20.000</span></li>
+      </ul>
+      <h4 class="category-title">Private iOS</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 23.000</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">CapCut Pro <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 10.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 22.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 60.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">GetContact <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 16.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">ChatGPT Plus <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 6.000</span></li>
+        <li><span>7 Hari</span><span>Rp 20.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 40.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">MS365 <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+</div> <!-- END CONTAINER -->
+
+<script>
+// Toggle accordion
+document.querySelectorAll(".accordion-header").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const box = btn.parentElement;
+    box.classList.toggle("active");
+  });
+});
+</script>
+
+</body>
+</html>
+  </div>
+
+  <!-- =====================
+       PAYMENT SECTION
+  ====================== -->
+  <div id="payment" class="payment-box">
+    <div class="page-title">PEMBAYARAN</div>
+    <div class="page-subtitle">BY DigitalMurahId</div>
+    
+    <!-- Contoh Seabank -->
+    <div class="number-box">
+      <span id="seabank">901202675263</span>
+      <button class="copy-btn" onclick="copyText('seabank')">Salin</button>
+    </div>
+    <div class="number-box" style="margin-top:8px;">
+      <span id="gopay">089507478562</span>
+      <button class="copy-btn" onclick="copyText('gopay')">Salin</button>
+    </div>
+
+    <p style="margin-top:12px;">Scan QRIS:</p>
+    <img src="https://i.ibb.co.com/r2nWhSJr/1765904059288.png" alt="QRIS" class="qris">
+  </div>
+</div>
+
+<script>
+/* =========================
+   COPY TEXT FUNCTION
+========================= */
+function copyText(id){
+  const el = document.getElementById(id);
+  if(!el){ alert("Data tidak ditemukan"); return; }
+  const text = el.innerText.trim();
+  navigator.clipboard.writeText(text).then(()=>{ alert("Berhasil disalin:\n"+text); })
+  .catch(()=>{ alert("Gagal menyalin, silakan salin manual"); });
+}
+
+/* =========================
+   ACCORDION TOGGLE
+========================= */
+document.querySelectorAll(".accordion-header").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const box=btn.parentElement;
+    box.classList.toggle("active");
+  });
+});
+
+/* =========================
+   SCROLL TO SECTION
+========================= */
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(el){ el.scrollIntoView({behavior:'smooth'}); }
+}
+</script>
+
+</body>
+</html>
