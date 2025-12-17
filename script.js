@@ -17,6 +17,13 @@ function copyText(id){
     alert("Gagal menyalin, silakan salin manual");
   });
 }
+document.querySelectorAll(".accordion-header").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const box = btn.parentElement;
+    box.classList.toggle("active");
+  });
+});
+
 
 /* =========================
    COMING SOON ALERT
@@ -24,3 +31,18 @@ function copyText(id){
 function comingSoon(){
   alert("Halaman belum tersedia 🚀\nAkan segera hadir!");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
