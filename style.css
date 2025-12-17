@@ -440,13 +440,33 @@ body{
 .premium-telegram{
   position:relative;
   background: linear-gradient(135deg, #3a0ca3, #0a1931);
-  border:2px solid rgba(138,43,226,0.6);
-  box-shadow:
-    0 0 25px rgba(138,43,226,0.9),
-    inset 0 0 20px rgba(10,25,47,0.8);
+  border:2px solid rgba(138,43,226,0.7);
   text-align:center;
-  animation:premiumGlow 3s ease-in-out infinite;
+  overflow:visible;
+
+  box-shadow:
+    0 0 30px rgba(138,43,226,1),
+    0 0 60px rgba(90,160,255,0.6),
+    inset 0 0 22px rgba(10,25,47,0.85);
+
+  animation:premiumGlow 3.5s ease-in-out infinite;
 }
+
+/* Aura cahaya keluar */
+.premium-telegram::before{
+  content:"";
+  position:absolute;
+  inset:-18px;
+  border-radius:18px;
+  background: radial-gradient(
+    circle,
+    rgba(138,43,226,0.35),
+    transparent 70%
+  );
+  filter:blur(18px);
+  z-index:-1;
+}
+
 
 .premium-desc{
   font-size:13px;
@@ -476,9 +496,24 @@ body{
 }
 
 @keyframes premiumGlow{
-  0%{ box-shadow:0 0 18px rgba(138,43,226,0.6); }
-  50%{ box-shadow:0 0 35px rgba(138,43,226,1); }
-  100%{ box-shadow:0 0 18px rgba(138,43,226,0.6); }
+  0%{
+    box-shadow:
+      0 0 24px rgba(138,43,226,0.7),
+      0 0 48px rgba(90,160,255,0.4),
+      inset 0 0 18px rgba(10,25,47,0.7);
+  }
+  50%{
+    box-shadow:
+      0 0 42px rgba(138,43,226,1),
+      0 0 75px rgba(90,160,255,0.8),
+      inset 0 0 26px rgba(10,25,47,0.9);
+  }
+  100%{
+    box-shadow:
+      0 0 24px rgba(138,43,226,0.7),
+      0 0 48px rgba(90,160,255,0.4),
+      inset 0 0 18px rgba(10,25,47,0.7);
+  }
 }
 
 
