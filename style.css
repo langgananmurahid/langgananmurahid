@@ -528,3 +528,20 @@ body{
   opacity:0.85;
 }
 
+/* =====================
+   PAGE ENTRANCE ANIMATION
+===================== */
+.container{
+  animation:pageEnter 0.9s ease forwards;
+}
+
+@keyframes pageEnter{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
