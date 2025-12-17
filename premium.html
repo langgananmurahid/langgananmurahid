@@ -4,16 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aplikasi Premium - DigitalMurahId</title>
-
 <style>
 /* =====================
    RESET & GLOBAL
 ===================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{ margin:0; padding:0; box-sizing:border-box; }
 body{
   font-family: Arial, Helvetica, sans-serif;
   background:
@@ -28,27 +23,13 @@ body{
 /* =====================
    CONTAINER
 ===================== */
-.container{
-  max-width:480px;
-  margin:0 auto;
-}
+.container{ max-width:480px; margin:0 auto; }
 
 /* =====================
    TITLE
 ===================== */
-.title{
-  text-align:center;
-  font-size:28px;
-  font-weight:800;
-  margin-bottom:10px;
-  text-shadow:0 0 14px rgba(138,43,226,0.9);
-}
-.description{
-  font-size:14px;
-  opacity:0.9;
-  text-align:center;
-  margin-bottom:20px;
-}
+.title{ text-align:center; font-size:28px; font-weight:800; margin-bottom:10px; text-shadow:0 0 14px rgba(138,43,226,0.9);}
+.description{ font-size:14px; opacity:0.9; text-align:center; margin-bottom:20px;}
 
 /* =====================
    ACCORDION
@@ -58,102 +39,52 @@ body{
   border-radius:12px;
   margin-bottom:18px;
   overflow:hidden;
-  box-shadow:
-    0 0 12px rgba(138,43,226,0.35),
-    0 0 25px rgba(10,25,47,0.45);
+  box-shadow:0 0 12px rgba(138,43,226,0.35),0 0 25px rgba(10,25,47,0.45);
 }
-
 .accordion-header{
-  width:100%;
-  text-align:left;
-  padding:14px 18px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+  width:100%; text-align:left; padding:14px 18px;
+  font-size:16px; font-weight:bold; cursor:pointer;
   background:linear-gradient(135deg,#3a0ca3,#0a1931);
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border:none;
-  outline:none;
-  transition:all 0.35s ease;
+  color:white; display:flex; justify-content:space-between; align-items:center;
+  border:none; outline:none; transition:all 0.35s ease;
 }
-
-.accordion-header:hover{
-  background:linear-gradient(135deg,#7a6bf0,#1a0f42);
-}
-
-.accordion-header .arrow{
-  transition: transform 0.35s ease;
-}
-
-.accordion-box.active .arrow{
-  transform:rotate(180deg);
-}
+.accordion-header:hover{ background:linear-gradient(135deg,#7a6bf0,#1a0f42);}
+.accordion-header .arrow{ transition: transform 0.35s ease;}
+.accordion-box.active .arrow{ transform:rotate(180deg);}
 
 /* =====================
    ACCORDION CONTENT
 ===================== */
 .accordion-content{
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
+  max-height:0; overflow:hidden; opacity:0;
   transition:max-height 0.45s ease, opacity 0.35s ease;
   padding:0 18px;
 }
-
 .accordion-box.active .accordion-content{
-  max-height:3000px;
-  opacity:1;
-  padding:12px 18px 18px;
+  max-height:3000px; opacity:1; padding:12px 18px 18px;
 }
 
 /* CATEGORY BOX */
-.category-box{
-  margin-bottom:14px;
-}
-
-.category-title{
-  font-weight:bold;
-  font-size:15px;
-  margin-bottom:6px;
-  text-shadow:0 0 8px rgba(138,43,226,0.8);
-}
+.category-box{ margin-bottom:14px;}
+.category-title{ font-weight:bold; font-size:15px; margin-bottom:6px; text-shadow:0 0 8px rgba(138,43,226,0.8);}
 
 /* PRICE LIST */
-.price-list{
-  list-style:none;
-}
-.price-list li{
-  display:flex;
-  justify-content:space-between;
-  padding:6px 0;
-  border-bottom:1px dashed rgba(255,255,255,0.2);
-  font-size:14px;
-}
+.price-list{ list-style:none; }
+.price-list li{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.2); font-size:14px;}
 
 /* NOTE BOX */
 .note-box p{
-  font-size:13px;
-  opacity:0.8;
+  font-size:13px; opacity:0.8;
   background: rgba(255,255,255,0.05);
-  padding:8px;
-  border-radius:8px;
+  padding:8px; border-radius:8px;
   text-align:center;
-  box-shadow:
-    0 0 12px rgba(138,43,226,0.25),
-    inset 0 0 8px rgba(10,25,47,0.2);
+  box-shadow:0 0 12px rgba(138,43,226,0.25), inset 0 0 8px rgba(10,25,47,0.2);
 }
 
 /* =====================
    RESPONSIVE
 ===================== */
-@media (min-width:768px){
-  .container{
-    max-width:600px;
-  }
-}
+@media (min-width:768px){ .container{ max-width:600px; } }
 </style>
 </head>
 <body>
@@ -166,50 +97,36 @@ body{
   <div class="accordion-box">
     <button class="accordion-header">Netflix <span class="arrow">⌄</span></button>
     <div class="accordion-content">
-      <div class="category-box">
-        <h3 class="category-title">Paket & Harga</h3>
-        <ul class="price-list">
-          <li><span>1 Hari</span><span>Rp 6.000</span></li>
-          <li><span>3 Hari</span><span>Rp 10.000</span></li>
-          <li><span>1 Minggu</span><span>Rp 15.000</span></li>
-          <li><span>1 Bulan</span><span>Rp 27.000</span></li>
-        </ul>
-      </div>
-      <div class="category-box note-box">
-        <p>Login 1 device, garansi full, tidak boleh pindah device, anti limit screen & bebas nonton</p>
-      </div>
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 6.000</span></li>
+        <li><span>3 Hari</span><span>Rp 10.000</span></li>
+        <li><span>1 Minggu</span><span>Rp 15.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 27.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full, tidak boleh pindah device, anti limit screen & bebas nonton</p></div>
     </div>
   </div>
 
   <div class="accordion-box">
     <button class="accordion-header">Disney+ <span class="arrow">⌄</span></button>
     <div class="accordion-content">
-      <div class="category-box">
-        <h3 class="category-title">Paket & Harga</h3>
-        <ul class="price-list">
-          <li><span>1 Hari</span><span>Rp 5.000</span></li>
-          <li><span>7 Hari</span><span>Rp 15.000</span></li>
-          <li><span>30 Hari</span><span>Rp 28.000</span></li>
-        </ul>
-      </div>
-      <div class="category-box note-box">
-        <p>Login 1 device, garansi full, anti limit screen & bebas nonton</p>
-      </div>
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 5.000</span></li>
+        <li><span>7 Hari</span><span>Rp 15.000</span></li>
+        <li><span>30 Hari</span><span>Rp 28.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full, anti limit screen & bebas nonton</p></div>
     </div>
   </div>
 
   <div class="accordion-box">
     <button class="accordion-header">Vidio Platinum <span class="arrow">⌄</span></button>
     <div class="accordion-content">
-      <div class="category-box">
-        <ul class="price-list">
-          <li><span>7 Hari</span><span>Rp 15.000</span></li>
-          <li><span>1 Bulan</span><span>Rp 25.000</span></li>
-        </ul>
-      </div>
-      <div class="category-box note-box">
-        <p>Login 1 device, garansi full, anti limit screen & bebas nonton</p>
-      </div>
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 15.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 25.000</span></li>
+      </ul>
+      <div class="note-box"><p>Login 1 device, garansi full, anti limit screen & bebas nonton</p></div>
     </div>
   </div>
 
@@ -221,9 +138,7 @@ body{
         <li><span>7 Hari</span><span>Rp 9.000</span></li>
         <li><span>30 Hari</span><span>Rp 15.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Login 1 device, garansi full, anti limit screen & bebas nonton</p>
-      </div>
+      <div class="note-box"><p>Login 1 device, garansi full, anti limit screen & bebas nonton</p></div>
     </div>
   </div>
 
@@ -233,9 +148,7 @@ body{
       <ul class="price-list">
         <li><span>1 Bulan</span><span>Rp 15.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Login 1 device, garansi full</p>
-      </div>
+      <div class="note-box"><p>Login 1 device, garansi full</p></div>
     </div>
   </div>
 
@@ -245,9 +158,7 @@ body{
       <ul class="price-list">
         <li><span>1 Bulan</span><span>Rp 14.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Login 1 device, garansi full</p>
-      </div>
+      <div class="note-box"><p>Login 1 device, garansi full</p></div>
     </div>
   </div>
 
@@ -259,9 +170,7 @@ body{
         <li><span>6 Bulan</span><span>Rp 12.000</span></li>
         <li><span>1 Tahun</span><span>Rp 20.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -271,9 +180,7 @@ body{
       <ul class="price-list">
         <li><span>1 Bulan</span><span>Rp 12.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -283,9 +190,7 @@ body{
       <ul class="price-list">
         <li><span>1 Bulan</span><span>Rp 20.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -296,9 +201,7 @@ body{
         <li><span>7 Hari</span><span>Rp 10.000</span></li>
         <li><span>1 Bulan</span><span>Rp 15.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -308,9 +211,7 @@ body{
       <ul class="price-list">
         <li><span>7 Hari</span><span>Rp 12.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -322,9 +223,7 @@ body{
         <li><span>3 Bulan</span><span>Rp 12.000</span></li>
         <li><span>1 Tahun</span><span>Rp 20.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -334,9 +233,7 @@ body{
       <ul class="price-list">
         <li><span>1 Bulan</span><span>Rp 18.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -376,9 +273,7 @@ body{
         <li><span>3 Bulan</span><span>Rp 20.000</span></li>
         <li><span>1 Tahun</span><span>Rp 55.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Include YouTube biasa & YouTube Music</p>
-      </div>
+      <div class="note-box"><p>Include YouTube biasa & YouTube Music</p></div>
     </div>
   </div>
 
@@ -388,9 +283,7 @@ body{
       <ul class="price-list">
         <li><span>1 Bulan</span><span>Rp 12.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Garansi full</p>
-      </div>
+      <div class="note-box"><p>Garansi full</p></div>
     </div>
   </div>
 
@@ -402,9 +295,7 @@ body{
         <li><span>3 Bulan</span><span>Rp 12.000</span></li>
         <li><span>Lifetime</span><span>Rp 25.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Full garansi</p>
-      </div>
+      <div class="note-box"><p>Full garansi</p></div>
     </div>
   </div>
 
@@ -432,12 +323,53 @@ body{
         <li><span>1 Bulan</span><span>Rp 22.000</span></li>
         <li><span>1 Tahun</span><span>Rp 60.000</span></li>
       </ul>
-      <div class="category-box note-box">
-        <p>Full garansi</p>
-      </div>
+      <div class="note-box"><p>Full garansi</p></div>
     </div>
   </div>
 
   <div class="accordion-box">
     <button class="accordion-header">GetContact <span class="arrow">⌄</span></button>
-    <div class
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 16.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">ChatGPT Plus <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 6.000</span></li>
+        <li><span>7 Hari</span><span>Rp 20.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 40.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">MS365 <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="note-box"><p>Full garansi</p></div>
+    </div>
+  </div>
+
+</div> <!-- END CONTAINER -->
+
+<script>
+// Toggle accordion
+document.querySelectorAll(".accordion-header").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const box = btn.parentElement;
+    box.classList.toggle("active");
+  });
+});
+</script>
+
+</body>
+</html>
