@@ -94,6 +94,13 @@ body{
   to{ transform:rotate(360deg); }
 }
 
+.accordion-content {
+  display: none;
+}
+
+.accordion-box.active .accordion-content {
+  display: block;
+}
 
 
 .title{
