@@ -433,5 +433,52 @@ body{
   box-shadow:0 0 22px rgba(138,43,226,1);
 }
 
+/* =====================
+   TELEGRAM PREMIUM HIGHLIGHT
+===================== */
+
+.premium-telegram{
+  position:relative;
+  background: linear-gradient(135deg, #3a0ca3, #0a1931);
+  border:2px solid rgba(138,43,226,0.6);
+  box-shadow:
+    0 0 25px rgba(138,43,226,0.9),
+    inset 0 0 20px rgba(10,25,47,0.8);
+  text-align:center;
+  animation:premiumGlow 3s ease-in-out infinite;
+}
+
+.premium-desc{
+  font-size:13px;
+  opacity:0.9;
+  margin:10px 0;
+  line-height:1.5;
+}
+
+.premium-price{
+  font-size:20px;
+  font-weight:900;
+  margin:10px 0;
+  text-shadow:0 0 14px rgba(255,255,255,0.6);
+}
+
+.premium-badge{
+  position:absolute;
+  top:-12px;
+  right:-12px;
+  background:#ff2fd2;
+  color:#fff;
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:12px;
+  font-weight:800;
+  box-shadow:0 0 16px rgba(255,47,210,1);
+}
+
+@keyframes premiumGlow{
+  0%{ box-shadow:0 0 18px rgba(138,43,226,0.6); }
+  50%{ box-shadow:0 0 35px rgba(138,43,226,1); }
+  100%{ box-shadow:0 0 18px rgba(138,43,226,0.6); }
+}
 
 
