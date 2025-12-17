@@ -57,6 +57,76 @@
 
     </div>
   </div>
+<!-- =========================
+     TESTIMONI CAROUSEL
+========================= -->
+<div class="testimoni-slider">
+  <div class="testimoni-slide active">
+    "Pelayanan cepat dan akurat. Followers Instagram saya naik sesuai janji!" — John D.
+  </div>
+  <div class="testimoni-slide">
+    "Paket FYP TikTok bekerja sempurna, view dan like meningkat drastis!" — Sarah W.
+  </div>
+  <div class="testimoni-slide">
+    "Member Telegram cepat masuk, garansi sesuai janji. Recommended!" — Ahmad T.
+  </div>
+  <div class="testimoni-slide">
+    "Netflix 1 bulan cepat aktif, login aman, puas banget!" — Lila P.
+  </div>
+  <div class="testimoni-slide">
+    "Spotify Family Plan berjalan lancar, harga terjangkau!" — Dedi R.
+  </div>
+</div>
+
+<!-- =========================
+     CSS UNTUK TESTIMONI
+========================= -->
+<style>
+.testimoni-slider {
+  position: relative;
+  background: rgba(20,10,40,0.88);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 30px;
+  color: white;
+  font-size: 14px;
+  min-height: 70px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(138,43,226,0.35);
+  font-style: italic;
+}
+
+.testimoni-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.testimoni-slide.active {
+  opacity: 1;
+}
+</style>
+
+<!-- =========================
+     JS UNTUK SLIDER
+========================= -->
+<script>
+const slides = document.querySelectorAll('.testimoni-slide');
+let current = 0;
+
+function nextSlide(){
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+}
+
+// Bergeser setiap 3 detik
+setInterval(nextSlide, 3000);
+</script>
 
   <!-- JS EXTERNAL -->
   <script src="script.js"></script>
