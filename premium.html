@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Premium - DigitalMurahId</title>
+
+<style>
+/* =====================
+   RESET & GLOBAL
+===================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(10,25,47,0.6), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(138,43,226,0.45), transparent 45%),
+    linear-gradient(135deg, #000000, #2a0a52, #0a1931);
+  color:white;
+  min-height:100vh;
+  padding:20px;
+}
+
+/* =====================
+   CONTAINER
+===================== */
+.container{
+  max-width:480px;
+  margin:0 auto;
+}
+
+/* =====================
+   TITLE
+===================== */
+.title{
+  text-align:center;
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:10px;
+  text-shadow:0 0 14px rgba(138,43,226,0.9);
+}
+.description{
+  font-size:14px;
+  opacity:0.9;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* =====================
+   ACCORDION
+===================== */
+.accordion-box{
+  background: rgba(20,10,40,0.88);
+  border-radius:12px;
+  margin-bottom:18px;
+  overflow:hidden;
+  box-shadow:
+    0 0 12px rgba(138,43,226,0.35),
+    0 0 25px rgba(10,25,47,0.45);
+}
+
+.accordion-header{
+  width:100%;
+  text-align:left;
+  padding:14px 18px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,#3a0ca3,#0a1931);
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border:none;
+  outline:none;
+  transition:all 0.35s ease;
+}
+
+.accordion-header:hover{
+  background:linear-gradient(135deg,#7a6bf0,#1a0f42);
+}
+
+.accordion-header .arrow{
+  transition: transform 0.35s ease;
+}
+
+.accordion-box.active .arrow{
+  transform:rotate(180deg);
+}
+
+/* =====================
+   ACCORDION CONTENT
+===================== */
+.accordion-content{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:max-height 0.45s ease, opacity 0.35s ease;
+  padding:0 18px;
+}
+
+.accordion-box.active .accordion-content{
+  max-height:3000px;
+  opacity:1;
+  padding:12px 18px 18px;
+}
+
+/* CATEGORY BOX */
+.category-box{
+  margin-bottom:14px;
+}
+
+.category-title{
+  font-weight:bold;
+  font-size:15px;
+  margin-bottom:6px;
+  text-shadow:0 0 8px rgba(138,43,226,0.8);
+}
+
+/* PRICE LIST */
+.price-list{
+  list-style:none;
+}
+.price-list li{
+  display:flex;
+  justify-content:space-between;
+  padding:6px 0;
+  border-bottom:1px dashed rgba(255,255,255,0.2);
+  font-size:14px;
+}
+
+/* NOTE BOX */
+.note-box p{
+  font-size:13px;
+  opacity:0.8;
+  background: rgba(255,255,255,0.05);
+  padding:8px;
+  border-radius:8px;
+  text-align:center;
+  box-shadow:
+    0 0 12px rgba(138,43,226,0.25),
+    inset 0 0 8px rgba(10,25,47,0.2);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (min-width:768px){
+  .container{
+    max-width:600px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="title">Aplikasi Premium</div>
+  <div class="description">Layanan premium digital bergaransi & anti limit, siap pakai di 1 device.</div>
+
+  <!-- ===================== ACCORDION ITEMS ====================== -->
+  <div class="accordion-box">
+    <button class="accordion-header">Netflix <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <div class="category-box">
+        <h3 class="category-title">Paket & Harga</h3>
+        <ul class="price-list">
+          <li><span>1 Hari</span><span>Rp 6.000</span></li>
+          <li><span>3 Hari</span><span>Rp 10.000</span></li>
+          <li><span>1 Minggu</span><span>Rp 15.000</span></li>
+          <li><span>1 Bulan</span><span>Rp 27.000</span></li>
+        </ul>
+      </div>
+      <div class="category-box note-box">
+        <p>Login 1 device, garansi full, tidak boleh pindah device, anti limit screen & bebas nonton</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Disney+ <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <div class="category-box">
+        <h3 class="category-title">Paket & Harga</h3>
+        <ul class="price-list">
+          <li><span>1 Hari</span><span>Rp 5.000</span></li>
+          <li><span>7 Hari</span><span>Rp 15.000</span></li>
+          <li><span>30 Hari</span><span>Rp 28.000</span></li>
+        </ul>
+      </div>
+      <div class="category-box note-box">
+        <p>Login 1 device, garansi full, anti limit screen & bebas nonton</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Vidio Platinum <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <div class="category-box">
+        <ul class="price-list">
+          <li><span>7 Hari</span><span>Rp 15.000</span></li>
+          <li><span>1 Bulan</span><span>Rp 25.000</span></li>
+        </ul>
+      </div>
+      <div class="category-box note-box">
+        <p>Login 1 device, garansi full, anti limit screen & bebas nonton</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Prime Video Amazon <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Hari</span><span>Rp 4.000</span></li>
+        <li><span>7 Hari</span><span>Rp 9.000</span></li>
+        <li><span>30 Hari</span><span>Rp 15.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Login 1 device, garansi full, anti limit screen & bebas nonton</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">HBO Max <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 15.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Login 1 device, garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">iQiyi Premium <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 14.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Login 1 device, garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Viu <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 5.000</span></li>
+        <li><span>6 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 20.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">B-Station <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Lok Lok <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 20.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">WeTv <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 10.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 15.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Dramabox <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Youku <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 6.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 20.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Vision+ <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 18.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Spotify <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <h4 class="category-title">Family Plan (Bergaransi)</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 15.000</span></li>
+        <li><span>2 Bulan</span><span>Rp 28.000</span></li>
+      </ul>
+      <h4 class="category-title">Individual Plan (Bergaransi)</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 23.000</span></li>
+        <li><span>2 Bulan</span><span>Rp 33.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 45.000</span></li>
+      </ul>
+      <h4 class="category-title">Student Plan (Tidak Bergaransi)</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 25.000</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">YouTube Premium <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <h4 class="category-title">No Garansi</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 5.000</span></li>
+      </ul>
+      <h4 class="category-title">Full Garansi</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 7.000</span></li>
+        <li><span>2 Bulan</span><span>Rp 14.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 20.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 55.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Include YouTube biasa & YouTube Music</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Apple Music <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Garansi full</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Canva Pro <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 5.000</span></li>
+        <li><span>3 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>Lifetime</span><span>Rp 25.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Full garansi</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">Alight Motion <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <h4 class="category-title">Private Android</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 10.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 20.000</span></li>
+      </ul>
+      <h4 class="category-title">Private iOS</h4>
+      <ul class="price-list">
+        <li><span>1 Bulan</span><span>Rp 12.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 23.000</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">CapCut Pro <span class="arrow">⌄</span></button>
+    <div class="accordion-content">
+      <ul class="price-list">
+        <li><span>7 Hari</span><span>Rp 10.000</span></li>
+        <li><span>1 Bulan</span><span>Rp 22.000</span></li>
+        <li><span>1 Tahun</span><span>Rp 60.000</span></li>
+      </ul>
+      <div class="category-box note-box">
+        <p>Full garansi</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-box">
+    <button class="accordion-header">GetContact <span class="arrow">⌄</span></button>
+    <div class
