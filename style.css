@@ -40,6 +40,59 @@ body{
   text-align:center;
 }
 
+/* =====================
+   LOGO ANIMATION
+===================== */
+.logo-wrapper{
+  position:relative;
+  width:130px;
+  height:130px;
+  margin:0 auto 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo{
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  z-index:2;
+  background:#000;
+  padding:6px;
+  box-shadow:
+    0 0 18px rgba(90,160,255,0.9),
+    0 0 38px rgba(20,40,80,0.9);
+  animation:pulse 3s ease-in-out infinite;
+}
+
+/* Neon ring */
+.logo-ring{
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:2px solid rgba(90,160,255,0.8);
+  box-shadow:
+    0 0 22px rgba(90,160,255,0.9),
+    inset 0 0 18px rgba(20,40,80,0.9);
+  animation:spin 9s linear infinite;
+}
+
+/* Pulse logo */
+@keyframes pulse{
+  0%{ transform:scale(1); }
+  50%{ transform:scale(1.1); }
+  100%{ transform:scale(1); }
+}
+
+/* Spin ring */
+@keyframes spin{
+  from{ transform:rotate(0deg); }
+  to{ transform:rotate(360deg); }
+}
+
+
 .title{
   font-size:28px;
   font-weight:800;
