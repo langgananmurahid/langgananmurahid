@@ -516,4 +516,15 @@ body{
   }
 }
 
+/* =====================
+   YOUTUBE STYLE
+===================== */
+
+.note-box{
+  background: rgba(255,255,255,0.05);
+  border:1px dashed rgba(255,255,255,0.3);
+  text-align:center;
+  font-size:13px;
+  opacity:0.85;
+}
 
