@@ -54,6 +54,15 @@ body{
 .btn:hover::before, a.btn:hover::before {
   transform: translateX(100%);
 }
+   /* Jika ingin tombol navigasi bawah lebih renggang */
+.btn-group.footer-btns {
+  display: flex;
+  flex-direction: column; /* tombol vertikal */
+  gap: 12px;              /* jarak antar tombol */
+  margin-top: 20px;
+  align-items: center;    /* center horizontal */
+}
+
 
 
 /* =====================
@@ -396,11 +405,12 @@ body{
   </div>
 
 </div> <!-- END CONTAINER -->
-<div class="btn-group">
-    <a href="https://wa.me/13438944164" class="btn">💬 Hubungi Admin</a>
-    <a href="payment.html" class="btn">💳 Pembayaran</a>
-    <a href="index.html" class="btn">🏠 Kembali ke Home</a>
-  </div>
+<div class="btn-group footer-btns">
+  <a href="https://wa.me/13438944164" class="btn">💬 Hubungi Admin</a>
+  <a href="payment.html" class="btn">💳 Pembayaran</a>
+  <a href="index.html" class="btn">🏠 Kembali ke Home</a>
+</div>
+
 <script>
 // Toggle accordion
 document.querySelectorAll(".accordion-header").forEach(btn => {
