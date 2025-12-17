@@ -19,6 +19,42 @@ body{
   min-height:100vh;
   padding:20px;
 }
+   .btn, a.btn {
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:14px;
+  border-radius:14px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  background: linear-gradient(135deg, #3a0ca3, #0a1931);
+  box-shadow: 0 0 12px rgba(138,43,226,0.5), inset 0 0 12px rgba(10,25,47,0.6);
+  transition: all 0.35s ease;
+}
+
+.btn::before, a.btn::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(120deg, transparent, rgba(138,43,226,0.7), transparent);
+  transform: translateX(-100%);
+  transition: 0.6s;
+}
+
+.btn:hover, a.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 30px rgba(138,43,226,0.9);
+}
+
+.btn:hover::before, a.btn:hover::before {
+  transform: translateX(100%);
+}
+
 
 /* =====================
    CONTAINER
