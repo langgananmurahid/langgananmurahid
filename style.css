@@ -1,0 +1,225 @@
+/* =====================
+   RESET & GLOBAL
+===================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color:#ffffff;
+  background:
+    radial-gradient(circle at top right, rgba(10,25,47,0.6), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(138,43,226,0.45), transparent 45%),
+    linear-gradient(135deg, #000000, #2a0a52, #0a1931);
+}
+
+/* =====================
+   CONTAINER
+===================== */
+.container{
+  max-width:420px;
+  margin:0 auto;
+  padding:30px 18px;
+}
+
+/* =====================
+   MAIN BOX (LANDING)
+===================== */
+.main-box{
+  background: rgba(20,10,40,0.88);
+  backdrop-filter: blur(10px);
+  border-radius:18px;
+  padding:28px 22px;
+  box-shadow:
+    0 0 25px rgba(138,43,226,0.35),
+    0 0 45px rgba(10,25,47,0.45);
+  text-align:center;
+}
+
+.title{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:10px;
+  text-shadow:0 0 14px rgba(138,43,226,0.9);
+}
+
+.description{
+  font-size:14px;
+  line-height:1.6;
+  opacity:0.9;
+  margin-bottom:26px;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+.btn-group{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.btn{
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:14px;
+  border-radius:14px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  background: linear-gradient(135deg, #3a0ca3, #0a1931);
+  box-shadow:
+    0 0 12px rgba(138,43,226,0.5),
+    inset 0 0 12px rgba(10,25,47,0.6);
+  transition:all 0.35s ease;
+}
+
+/* Neon sweep */
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(138,43,226,0.7),
+    transparent
+  );
+  transform:translateX(-100%);
+  transition:0.6s;
+}
+
+.btn:hover::before{
+  transform:translateX(100%);
+}
+
+.btn:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:
+    0 0 30px rgba(138,43,226,0.9),
+    0 0 55px rgba(10,25,47,0.9);
+}
+
+.icon{
+  font-size:20px;
+}
+
+.footer-text{
+  margin-top:20px;
+  font-size:12px;
+  opacity:0.7;
+}
+
+/* =====================
+   PAYMENT PAGE
+===================== */
+.page-title{
+  text-align:center;
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:6px;
+  text-shadow:0 0 14px rgba(138,43,226,0.9);
+}
+
+.page-subtitle{
+  text-align:center;
+  font-size:14px;
+  opacity:0.85;
+  margin-bottom:30px;
+}
+
+.payment-box{
+  background: rgba(25,15,50,0.88);
+  backdrop-filter: blur(8px);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:
+    0 0 18px rgba(138,43,226,0.35),
+    0 0 30px rgba(10,25,47,0.35);
+}
+
+.payment-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.payment-title img{
+  width:28px;
+  height:28px;
+}
+
+.info{
+  font-size:14px;
+  margin-bottom:6px;
+  opacity:0.9;
+}
+
+.label{
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+.number-box{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0a1931;
+  padding:10px;
+  border-radius:10px;
+}
+
+.copy-btn{
+  background: linear-gradient(135deg, #3a0ca3, #0a1931);
+  border:none;
+  color:white;
+  padding:6px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.copy-btn:hover{
+  box-shadow:0 0 14px rgba(138,43,226,0.9);
+  transform:scale(1.05);
+}
+
+.qris{
+  width:100%;
+  max-width:260px;
+  display:block;
+  margin:12px auto 0;
+  border-radius:12px;
+}
+
+.notice{
+  text-align:center;
+  font-size:13px;
+  margin-top:10px;
+  opacity:0.8;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (min-width:768px){
+  .container{
+    max-width:520px;
+  }
+  .title{
+    font-size:32px;
+  }
+}
