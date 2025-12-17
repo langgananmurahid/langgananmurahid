@@ -77,37 +77,63 @@ body{
 .description{ font-size:14px; opacity:0.9; text-align:center; margin-bottom:20px;}
 
 /* =====================
-   ACCORDION
+/* =====================
+   ACCORDION SMOOTH
 ===================== */
-.accordion-box{
+.accordion-box {
   background: rgba(20,10,40,0.88);
   border-radius:12px;
   margin-bottom:18px;
-  overflow:hidden;
-  box-shadow:0 0 12px rgba(138,43,226,0.35),0 0 25px rgba(10,25,47,0.45);
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(138,43,226,0.35), 0 0 25px rgba(10,25,47,0.45);
 }
-.accordion-header{
-  width:100%; text-align:left; padding:14px 18px;
-  font-size:16px; font-weight:bold; cursor:pointer;
-  background:linear-gradient(135deg,#3a0ca3,#0a1931);
-  color:white; display:flex; justify-content:space-between; align-items:center;
-  border:none; outline:none; transition:all 0.35s ease;
-}
-.accordion-header:hover{ background:linear-gradient(135deg,#7a6bf0,#1a0f42);}
-.accordion-header .arrow{ transition: transform 0.35s ease;}
-.accordion-box.active .arrow{ transform:rotate(180deg);}
 
-/* =====================
-   ACCORDION CONTENT
-===================== */
-.accordion-content{
-  max-height:0; overflow:hidden; opacity:0;
-  transition:max-height 0.45s ease, opacity 0.35s ease;
-  padding:0 18px;
+/* Header tombol */
+.accordion-header {
+  width:100%;
+  text-align:left;
+  padding:14px 18px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  background: linear-gradient(135deg,#3a0ca3,#0a1931);
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border:none;
+  outline:none;
+  transition: all 0.35s ease;
 }
-.accordion-box.active .accordion-content{
-  max-height:3000px; opacity:1; padding:12px 18px 18px;
+.accordion-header:hover {
+  background: linear-gradient(135deg,#7a6bf0,#1a0f42);
 }
+.accordion-header .arrow {
+  transition: transform 0.35s ease;
+}
+.accordion-box.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* Content */
+.accordion-content {
+  max-height: 0;              /* tinggi awal 0 */
+  overflow: hidden;
+  opacity: 0;                  /* invisible */
+  padding: 0 18px;
+  transition: 
+    max-height 0.45s ease-in-out, 
+    opacity 0.35s ease-in-out,
+    padding 0.35s ease-in-out;
+}
+
+/* Content saat aktif */
+.accordion-box.active .accordion-content {
+  max-height: 5000px;          /* tinggi maksimal konten */
+  opacity: 1;
+  padding: 12px 18px 18px;
+}
+
 
 /* CATEGORY BOX */
 .category-box{ margin-bottom:14px;}
