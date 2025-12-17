@@ -94,9 +94,15 @@ body{
   to{ transform:rotate(360deg); }
 }
 
-.accordion-content {
-  display: none;
+.accordion-content{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease;
 }
+
 
 .accordion-box.active .accordion-content {
   display: block;
@@ -544,4 +550,8 @@ body{
     opacity:1;
     transform:translateY(0);
   }
+}
+.accordion-box.active .accordion-content{
+  max-height:3000px;
+  opacity:1;
 }
